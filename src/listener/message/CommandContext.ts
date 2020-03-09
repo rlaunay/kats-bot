@@ -8,8 +8,8 @@ export class CommandContext {
 
     constructor(message: Message, prefix: string) {
         const args = message.content.slice(prefix.length).trim().split(/ +/g);
-        const command = args.shift();
-        if (!command) throw new Error('Aucune commande');
+        let command = args.shift();
+        if (!command) command = '';
 
         this.command = command;
         this.args = args;
