@@ -5,6 +5,9 @@ export class Ping implements Command {
     commandNames = ['ping'];
 
     async run(commandContext: CommandContext): Promise<void> {
-        await commandContext.message.channel.send('pong');
+        const start = Date.now();
+        const rep = await  commandContext.message.channel.send('Pong');
+
+        await rep.edit(`Pong : **${Date.now() - start} ms**`);
     }
 }
