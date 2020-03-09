@@ -1,0 +1,24 @@
+{
+  "name": "kats-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "del-cli build && tsc",
+    "start": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon build/index.js\""
+  },
+  "author": "Katsuo",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^13.9.0",
+    "@types/ws": "^7.2.2",
+    "concurrently": "^5.1.0",
+    "del-cli": "^3.0.0",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.2",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "discord.js": "^12.0.2"
+  }
+}
