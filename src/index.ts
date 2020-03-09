@@ -1,18 +1,15 @@
 import { Client, Message } from 'discord.js';
+import { CommandHadnler } from "./listener/message/CommandHandler";
 
-import { config } from 'dotenv';
-config();
+import { settings } from "./config/config";
 
 const client = new Client();
+const commandHadnler = new CommandHadnler(settings.prefix);
 
 client.on('ready', () => {
     if (client.user) console.log(`Bot ${client.user.tag}`);
 });
 
-client.on('message', (msg: Message) => {
-   if (msg.content === '++ping') {
-       msg.reply('Pong !');
-   }
-});
+client.on('message', (msg: Message) => commandHadnler.handleMessage(msg));
 
-client.login(process.env.TOKEN);
+client.login(settings.token);
