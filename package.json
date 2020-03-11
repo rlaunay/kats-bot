@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "del-cli build && tsc",
-    "start": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon build/index.js\""
+    "start": "nodemon build/index.js",
+    "watch": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon build/index.js\""
   },
   "author": "Katsuo",
   "license": "ISC",

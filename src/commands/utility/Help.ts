@@ -1,8 +1,9 @@
-import { Command } from "../listener/message/Command";
-import { CommandContext } from "../listener/message/CommandContext";
+import { Command } from "../../listener/message/Command";
+import { CommandContext } from "../../listener/message/CommandContext";
 
-export class Ping implements Command {
-    commandNames = ['ping'];
+
+export class Help implements Command {
+    commandNames = ['help'];
 
     async run(commandContext: CommandContext): Promise<void> {
         const start = Date.now();
