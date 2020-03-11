@@ -1,5 +1,7 @@
 import { Command } from "../../listener/message/Command";
 import { CommandContext } from "../../listener/message/CommandContext";
+import {MessageEmbed} from "discord.js";
+import {settings} from "../../config/config";
 
 export class Ping implements Command {
     commandNames = ['ping'];
@@ -9,5 +11,15 @@ export class Ping implements Command {
         const rep = await  commandContext.message.channel.send('Pong');
 
         await rep.edit(`Pong : **${Date.now() - start} ms**`);
+    }
+
+    getHelp(prefix: string): MessageEmbed {
+        const helpMsg = new MessageEmbed();
+        helpMsg.setColor(settings.colorPrimary);
+        helpMsg.setTitle(`Commande: ${this.commandNames[0]}`);
+        helpMsg.setDescription('**Description:** Permet de ping le bot');
+        helpMsg.addField('**Utilisation:**', `${prefix}ping`);
+
+        return helpMsg;
     }
 }

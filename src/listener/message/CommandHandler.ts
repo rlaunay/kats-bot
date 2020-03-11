@@ -1,6 +1,8 @@
 import { Message } from "discord.js";
-import {Command, CommandConstruct} from "./Command";
+import { Command, CommandConstruct } from "./Command";
 import { CommandContext } from "./CommandContext";
+
+import { Help } from "./Help";
 
 export class CommandHandler {
     private commands: Command[];
@@ -8,6 +10,7 @@ export class CommandHandler {
 
     constructor(prefix: string, commandClasses: CommandConstruct[]) {
         this.commands = commandClasses.map(commandClass => new commandClass);
+        this.commands.push(new Help(this.commands));
         this.prefix = prefix;
     }
 
