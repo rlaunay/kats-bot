@@ -41,8 +41,6 @@ export class ListenerHandler {
                 const listener = <any>Object.values(require(path + res)).shift();
 
                 this.listeners.set(listenerName, new listener());
-
-                console.log(`${listenerName} Chargée`);
             }
         });
     }

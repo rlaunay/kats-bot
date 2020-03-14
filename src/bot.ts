@@ -26,7 +26,7 @@ export default class KatsBot extends Client {
         });
 
         this.listenerHandler = new ListenerHandler({
-            listenerFolder: 'listener',
+            listenerFolder: args.listenerFolder,
             client: this,
             root: this.root
         });

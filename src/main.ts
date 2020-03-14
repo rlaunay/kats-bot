@@ -3,8 +3,8 @@ import { settings } from "./config/config";
 
 const client = new KatsBot({
     prefix: settings.prefix,
-    commandsFolder: 'commands',
-    listenerFolder: 'listener'
+    commandsFolder: settings.commandsFolder,
+    listenerFolder: settings.listenersFolder
 });
 
 client.listenerHandler.on();
