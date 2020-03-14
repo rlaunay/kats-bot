@@ -1,7 +1,7 @@
 import { Command } from "./Command";
 import { CommandContext } from "./CommandContext";
 import {MessageEmbed} from "discord.js";
-import {settings} from "../../config/config";
+import {settings} from "../config/config";
 
 
 export class Help implements Command {

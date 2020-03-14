@@ -1,5 +1,5 @@
-import { Command } from "../../listener/message/Command";
-import { CommandContext } from "../../listener/message/CommandContext";
+import { Command } from "../../CommandHandler/Command";
+import { CommandContext } from "../../CommandHandler/CommandContext";
 import {MessageEmbed} from "discord.js";
 import {settings} from "../../config/config";
 

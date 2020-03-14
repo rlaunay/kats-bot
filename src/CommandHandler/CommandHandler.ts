@@ -1,17 +1,28 @@
-import { Message } from "discord.js";
-import { Command, CommandConstruct } from "./Command";
+import {Collection, Message} from "discord.js";
+import {Command} from "./Command";
 import { CommandContext } from "./CommandContext";
 
-import { Help } from "./Help";
+import fs from 'fs';
+
+// import { Help } from "./Help";
+
+type CommandHandlerConfig = {
+    prefix: string;
+    commandsFolder: string;
+    root: string;
+};
 
 export class CommandHandler {
-    private commands: Command[];
-    private readonly prefix: string;
+    public readonly commands: Collection<string, Command> = new Collection();
 
-    constructor(prefix: string, commandClasses: CommandConstruct[]) {
-        this.commands = commandClasses.map(commandClass => new commandClass);
-        this.commands.push(new Help(this.commands));
-        this.prefix = prefix;
+    private readonly prefix: string;
+    private readonly root: string;
+
+    constructor(args: CommandHandlerConfig) {
+        this.prefix = args.prefix;
+        this.root = args.root;
+
+        this.getCommands(this.root + '\\' + args.commandsFolder + '\\');
     }
 
     async handleMessage(message: Message): Promise<void> {
@@ -38,5 +49,22 @@ export class CommandHandler {
 
     private isCommand(message: Message): boolean {
         return message.content.startsWith(this.prefix);
+    }
+
+    private getCommands(path: string) {
+        const results = fs.readdirSync(path);
+
+        results.forEach((res: string) => {
+            if (fs.statSync(path + res).isDirectory()) {
+                this.getCommands(path + res + '\\');
+            } else if (res.includes('.js')) {
+                const cmdName = res.split('.')[0];
+                const command = <any>Object.values(require(path + res)).shift();
+
+                this.commands.set(cmdName, new command);
+
+                console.log(`${cmdName} Chargée`);
+            }
+        });
     }
 }

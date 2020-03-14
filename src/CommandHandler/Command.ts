@@ -6,7 +6,3 @@ export interface Command {
     run(parsedUserCommand: CommandContext): Promise<void>;
     getHelp(prefix: string): MessageEmbed;
 }
-
-export interface CommandConstruct {
-    new (): Command;
-}
