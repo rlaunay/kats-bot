@@ -15,7 +15,7 @@ type CommandHandlerConfig = {
 export class CommandHandler {
     public readonly commands: Collection<string, Command> = new Collection();
 
-    private readonly prefix: string;
+    readonly prefix: string;
     private readonly root: string;
 
     constructor(args: CommandHandlerConfig) {
