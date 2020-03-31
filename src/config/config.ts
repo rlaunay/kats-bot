@@ -7,6 +7,7 @@ type BotConfig = {
     commandsFolder: string;
     listenersFolder: string;
     colorPrimary: number;
+    APIPort: number;
 }
 
 if (!process.env.TOKEN) {
@@ -29,10 +30,15 @@ if (!process.env.COLOR_PRIMARY) {
     throw new Error('Aucune couleur primaire définie');
 }
 
+if (!process.env.API) {
+    throw new Error('Aucun port définie pour l API du bot');
+}
+
 export const settings: BotConfig = {
     token: process.env.TOKEN,
     prefix: process.env.PREFIX,
     commandsFolder: process.env.COMMANDSFOLDER,
     listenersFolder: process.env.LISTENERSFOLDER,
-    colorPrimary: +process.env.COLOR_PRIMARY
+    colorPrimary: +process.env.COLOR_PRIMARY,
+    APIPort: +process.env.API
 };

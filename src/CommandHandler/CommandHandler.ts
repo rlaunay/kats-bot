@@ -4,8 +4,6 @@ import { CommandContext } from "./CommandContext";
 
 import fs from 'fs';
 
-// import { Help } from "./Help";
-
 type CommandHandlerConfig = {
     prefix: string;
     commandsFolder: string;
