@@ -8,7 +8,7 @@
     "start": "nodemon build/main.js",
     "watch": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon build/main.js\"",
     "start:api": "node build/API/index.js",
-    "watch:api": "nodemon build/API/index.js"
+    "watch:api": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon build/API/index.js\""
   },
   "author": "Katsuo",
   "license": "ISC",

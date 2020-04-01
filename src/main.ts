@@ -10,3 +10,5 @@ const client = new KatsBot({
 client.listenerHandler.on();
 
 client.login(settings.token);
+
+export default client;
